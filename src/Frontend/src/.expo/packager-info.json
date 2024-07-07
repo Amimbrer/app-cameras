@@ -1,0 +1,9 @@
+{
+  "packagerPort": 8081,
+  "expoServerPort": 19000,
+  "packagerPid": null,
+  "expoServerNgrokUrl": "https://d6-muy.amimbrer.src.exp.direct",
+  "packagerNgrokUrl": "https://packager.d6-muy.amimbrer.src.exp.direct",
+  "ngrokPid": 12640,
+  "webpackServerPort": null
+}

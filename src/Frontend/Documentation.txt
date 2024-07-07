@@ -1,0 +1,58 @@
+https://github.com/huanghanzhilian/c-shopping-rn/tree/main/app
+https://www.youtube.com/watch?v=Mm6_DlO5vvs
+
+https://github.com/expo/expo-template-default/tree/main/app
+
+- context folder
+- we dont need store folder
+- assets ->  /brand, images/icons, images/common,
+- modules structure -> 
+		── src/
+			├── assets/
+			│   ├── brand/ #iconos de la marca de la web
+			│   └── images/ 
+			├── modules/
+			│   ├── core/
+			│   │   ├── components/
+			│   │   ├── styles/
+			│   │   ├── hooks/
+			│   │   ├── lib/  # Bibliotecas comunes
+			│   │   ├── utils/
+			│   │   ├── types/ #types e interfaces
+			│   │   └── contexts/
+			│   ├── payment/
+			│   │   ├── components/
+			│   │   │   └── PaymentForm.tsx
+			│   │   ├── hooks/
+			│   │   │   └── usePayment.ts
+			│   │   ├── lib/ # Bibliotecas comunes
+			│   │   ├── services/
+			│   │   ├── contexts/
+			│   │   ├── utils/
+			│   │   ├── types/ #types e interfaces
+			│   │   └── pages/
+			│   │       └── PaymentPage.tsx
+			│   ├── auth/
+			│   │   ├── components/
+			│   │   │   └── SignUpForm.tsx
+			│   │   ├── hooks/
+			│   │   │   └── useAuth.ts
+			│   │   ├── lib/ # Bibliotecas comunes
+			│   │   ├── services/
+			│   │   ├── contexts/
+			│   │   ├── utils/
+			│   │   └── pages/
+			│   │       └── LoginPage.tsx
+			│   └── employees/
+			│       ├── components/
+			│       │   ├── EmployeeList.tsx
+			│       │   └── EmployeeSummary.tsx
+			│       ├── hooks/
+			│       │   ├── useEmployees.ts
+			│       │   └── useUpdateEmployee.ts
+			│       ├── services/
+			│       ├── contexts/
+			│       ├── utils/
+			│       └── pages/
+			│           └── EmployeePage.tsx
+			└── ...
