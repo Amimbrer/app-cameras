@@ -1,38 +1,17 @@
-type Color = {
-  light?: string;
-  dark?: string;
-};
-
-/**
- * Color text tab
- */
-const tintColor: Color = {
-  light: '#0a7ea4',
-  dark: '#fff',
-};
-
-/**
- * Icon colors
- */
-const iconColor: Color = {
-  light: '#687076',
-  dark: '#fff',
-};
-
-/**
- * Background colors
- */
-const backgroundColor: Color = {
-  light: '#fff',
-  dark: '#687076',
-};
-
-/**
- * Icon colors
- */
-const textColor: Color = {
-  light: '#11181C',
-  dark: '#11181C',
+export const paleteColors: {
+  [key: number]: string;
+} = {
+  50: '#f0f7fe',
+  100: '#deebfb',
+  200: '#c4def9',
+  300: '#9bc8f5',
+  400: '#6cabee',
+  500: '#4f8fe8',
+  600: '#356fdb',
+  700: '#2c5bc9',
+  800: '#294ba4',
+  900: '#264282',
+  950: '#1c2a4f',
 };
 
 /**
@@ -40,16 +19,24 @@ const textColor: Color = {
  */
 export const Colors = {
   light: {
-    text: textColor.light,
-    background: backgroundColor.light,
-    tint: tintColor.light,
-    icon: iconColor.light,
+    text: '#000000',
+    background: '#FFFFFF',
+    tint: '#FFFFFF',
+    primary: paleteColors[600],
+    secondary: paleteColors[500],
+    tertiary: paleteColors[700],
+    shadow: '#6b88a7',
+    inactive: '#8E8E8F',
   },
   dark: {
-    text: textColor.dark,
-    background: backgroundColor.dark,
-    tint: tintColor.dark,
-    icon: iconColor.dark,
+    text: '#FFFFFF',
+    background: '#3d3d3d',
+    tint: '#FFFFFF',
+    primary: paleteColors[300],
+    secondary: paleteColors[200],
+    tertiary: paleteColors[400],
+    shadow: paleteColors[200],
+    inactive: '#8E8E8F',
   },
 };
 
@@ -57,5 +44,4 @@ export type TextStyleType =
   | 'title'
   | 'defaultSemiBold'
   | 'subtitle'
-  | 'link'
   | 'default';

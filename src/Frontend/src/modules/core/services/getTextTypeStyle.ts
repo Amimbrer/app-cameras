@@ -5,7 +5,7 @@ import { TextStyleType } from '@core/types';
  * Returns the corresponding style for the test type
  * @param type
  */
-export const useTextTypeStyle = (type: TextStyleType): TextStyle => {
+export const getTextTypeStyle = (type: TextStyleType): TextStyle => {
   let textStyle: TextStyle = styles.default;
 
   switch (type) {
@@ -18,9 +18,6 @@ export const useTextTypeStyle = (type: TextStyleType): TextStyle => {
     case 'subtitle':
       textStyle = { ...textStyle, ...styles.subtitle };
       break;
-    case 'link':
-      textStyle = { ...textStyle, ...styles.link };
-      break;
   }
 
   return textStyle;
@@ -29,12 +26,11 @@ export const useTextTypeStyle = (type: TextStyleType): TextStyle => {
 const styles = StyleSheet.create({
   default: {
     fontSize: 16,
-    lineHeight: 24,
+    fontFamily: 'Roboto',
   },
   defaultSemiBold: {
-    fontSize: 16,
     lineHeight: 24,
-    fontWeight: '600',
+    fontWeight: '700',
   },
   title: {
     fontSize: 32,
@@ -44,10 +40,5 @@ const styles = StyleSheet.create({
   subtitle: {
     fontSize: 20,
     fontWeight: 'bold',
-  },
-  link: {
-    lineHeight: 30,
-    fontSize: 16,
-    color: '#0a7ea4',
   },
 });

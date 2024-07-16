@@ -7,14 +7,14 @@ import { Colors } from '@core/types';
  * @param colorName
  */
 export const useThemeColor = (
-  props: { light?: string; dark?: string },
   colorName: keyof typeof Colors.light & keyof typeof Colors.dark,
-): string | undefined => {
+  props?: { light?: string; dark?: string },
+): string => {
   // We obtain the current theme
   const theme = useColorScheme() ?? 'light';
 
   // We get custom styles for the theme
-  const customTheme = props[theme];
+  const customTheme = props && props[theme];
 
   if (customTheme) {
     return customTheme;

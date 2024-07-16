@@ -1,27 +1,42 @@
-import { Link, Stack } from 'expo-router';
-import { StyleSheet, Text, View } from 'react-native';
+import { StyleSheet } from 'react-native';
+import React from 'react';
+import Ionicons from "@expo/vector-icons/Ionicons";
+
+import { ThemedView, ThemedText } from '@/modules/core/components';
+import { useRouter } from 'expo-router';
 
 export default function NotFoundScreen() {
+const router = useRouter();
+
+  const onPress = () => {
+    router.back()
+  }
   return (
-    <>
-      <Stack.Screen options={{ title: 'Oops!' }} />
-      <View style={styles.container}>
-        <Text>¡Esta pantalla no existe!</ Text>
-        <Link href="/" style={styles.link}> Volver a la APP </Link>
-      </View>
-    </>
+      <ThemedView style={styles.container}>
+        <ThemedView  style={styles.text}>
+          <Ionicons size={16} name="alert-circle-outline" accessible={false} />
+          <ThemedText>
+              ¡Esta pantalla no existe!
+          </ThemedText>
+        </ThemedView>
+        <ThemedText onPress={onPress} themeColor='primary'> Volver a la APP </ThemedText>
+      </ThemedView>
   );
 }
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    alignItems: 'center',
     justifyContent: 'center',
-    padding: 20,
+    alignItems: 'center',
+    display: 'flex',
+    gap: 20  
   },
-  link: {
-    marginTop: 15,
-    paddingVertical: 15,
-  },
-});
+  text: {
+    textAlign: 'center',
+    display: 'flex',
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: 5
+  }
+})

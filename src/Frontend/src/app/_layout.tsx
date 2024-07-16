@@ -1,12 +1,13 @@
-import { useEffect } from 'react';
+import { useEffect, StrictMode } from 'react';
 import { useFonts } from 'expo-font';
 import * as SplashScreen from 'expo-splash-screen';
 import { Stack } from 'expo-router';
-import {SafeAreaProvider} from 'react-native-safe-area-context'
-import { ThemedView } from '@/modules/core/components/ThemedView';
+import { SafeAreaProvider } from 'react-native-safe-area-context'
 
 
-const RootLayout:React.FC = () => {
+import { useThemeColor } from '@/modules/core/hooks';
+
+const RootLayout = () => {
 
   SplashScreen.preventAutoHideAsync();
 
@@ -15,6 +16,9 @@ const RootLayout:React.FC = () => {
     'Roboto': require('@assets/fonts/roboto/roboto-latin-400-normal.ttf')
   });
 
+  const headerTintColor = useThemeColor('tint');
+  const backgroundColor = useThemeColor('primary');
+
   // Ocultamos carga cuando la fuente esté cargada
   useEffect(() => {
     if (loaded || error) {
@@ -22,29 +26,30 @@ const RootLayout:React.FC = () => {
     }
   }, [loaded, error]);
 
-  
-
-  // 
   if (!loaded && !error) {
     return null;
   }
 
-
   return (
-    <SafeAreaProvider>
-      <ThemedView>
-        <Stack>
+    <StrictMode>
+      <SafeAreaProvider >
+        <Stack screenOptions={{
+          headerTintColor: headerTintColor,
+          headerStyle: {
+            backgroundColor: backgroundColor
+            }
+          }}>
             <Stack.Screen name="(core)" options={{headerShown: false}} />
 
             <Stack.Screen name="+not-found" options={{
-              title: 'Página no encontrada',
-              headerTitle: 'Prueba'
+              headerTitle: 'Página no encontrada'
             }} 
             />
         </Stack>
-      </ThemedView>
-    </SafeAreaProvider>
+      </SafeAreaProvider>
+    </StrictMode>
   )
 }
 
 export default RootLayout;
+

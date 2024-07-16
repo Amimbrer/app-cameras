@@ -1,15 +1,39 @@
-import { SafeAreaView } from 'react-native-safe-area-context';
-import { Link } from 'expo-router';
+import { StyleSheet, } from 'react-native'
+import { useCallback, useState } from 'react';
 
-const CoreLayout:React.FC = () => {
+import {ThemedLink, ThemedText, ThemedView} from '@core/components'
+import { FullCameras, ToolBar } from '@/modules/cameras/components';
+
+const HomeScreen = () => {
+  const [fullCameras, setFullCameras] = useState(false)
+
+  const toggleSwitch = useCallback(() => {
+      setFullCameras(prevState => !prevState)
+    },[]
+  );
   
+
   return (
-    <SafeAreaView>
-      <Link href="/prueba"> Prueba1 </Link>     
-      <Link href='/prueba2'> Prueba2 </Link>
-    </SafeAreaView>
+    <ThemedView style={styles.container}>
+      <ToolBar value={fullCameras} setValue={toggleSwitch}/>
+
+        { 
+          fullCameras &&  <FullCameras /> 
+          // : <SliderCameras />
+        }
+
+      <ThemedText>Cameras</ThemedText>
+
+      <ThemedLink href='prueba'>Prueba</ThemedLink>
+    </ThemedView>
   )
 }
 
+export default HomeScreen
 
-export default CoreLayout;
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    padding: 10
+  }
+});
