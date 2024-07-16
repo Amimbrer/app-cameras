@@ -2,18 +2,26 @@ import { IconSwitch, ThemedView } from '@/modules/core/components';
 
 type ToolBarProps = {
   value: boolean;
-  setValue: () => void;
+  toggleSwitch: () => void;
 }
 
 /**
  * Create the toolbar for cameras screen
  * @param param0 
  */
-export const ToolBar = ({value, setValue}: ToolBarProps) => {
+export const ToolBar = ({value, toggleSwitch}: ToolBarProps) => {
 
   return (
+    
     <ThemedView>
-        <IconSwitch value={value} setValue={setValue} />
+        <IconSwitch 
+          value={value} 
+          setValue={toggleSwitch} 
+          icon={{
+            preIcon: 'expand', 
+            nextIcon: 'contract'
+          }} 
+        />
     </ThemedView>
   )
 }

@@ -2,10 +2,10 @@ import { StyleSheet, } from 'react-native'
 import { useCallback, useState } from 'react';
 
 import {ThemedLink, ThemedText, ThemedView} from '@core/components'
-import { FullCameras, ToolBar } from '@/modules/cameras/components';
+import { FullCameras, SliderCameras, ToolBar } from '@/modules/cameras/components';
 
 const HomeScreen = () => {
-  const [fullCameras, setFullCameras] = useState(false)
+  const [fullCameras, setFullCameras] = useState(true)
 
   const toggleSwitch = useCallback(() => {
       setFullCameras(prevState => !prevState)
@@ -14,12 +14,14 @@ const HomeScreen = () => {
   
 
   return (
+    
     <ThemedView style={styles.container}>
       <ToolBar value={fullCameras} setValue={toggleSwitch}/>
 
         { 
-          fullCameras &&  <FullCameras /> 
-          // : <SliderCameras />
+          fullCameras 
+          ?  <FullCameras /> 
+          : <SliderCameras />
         }
 
       <ThemedText>Cameras</ThemedText>

@@ -1,49 +1,61 @@
+import { useRef, useState } from 'react';
 import { StyleSheet, Switch } from 'react-native';
 
 
-import Ionicons from '@expo/vector-icons/Ionicons'
+import Ionicons  from '@expo/vector-icons/Ionicons'
 import {  ThemedView } from '@core/components';
-import { useRef, useState } from 'react';
+import Animated from 'react-native-reanimated';
+import { useIconSwitch } from '../../hooks/form';
 
 /**
  * Global variables
  */
-const ICONSIZE = 16;
-const ICONDELAY = 500;
+const iconSize = 14;
+
+type Icon = {
+    preIcon: keyof typeof Ionicons.glyphMap;
+    nextIcon: keyof typeof Ionicons.glyphMap;
+}
 
 
 type IconSwitchProps = {
     value: boolean;
-    setValue: () => void;
+    toggleSwitch: () => void;
+    icon?: Icon
 }
 
+/**
+ * Create a switch component with a custom prev o next icon
+ * @param param0 
+ */
+export const IconSwitch = ({value, toggleSwitch, icon}: IconSwitchProps) => {
+    const {animatedStyles, onSwitchChange} = useIconSwitch(toggleSwitch);
 
-export const IconSwitch = ({value, setValue}: IconSwitchProps) => {
-    const switchRef = useRef(null)
-    const [switchWidth, setSwitchWidth] = useState<number>(0)
 
-        
 
     return (
         <ThemedView style={styles.container}>
             <ThemedView 
-            ref={switchRef}
-            style={styles.switchContainer}
-            onLayout={(event) => {
-                const { width } = event.nativeEvent.layout;
-                setSwitchWidth(width);
-            }}>
-                {!value && <Ionicons name="expand" size={ICONSIZE} style={[styles.preIcon]} />}
+            style={styles.switchContainer}>
+                
+                <Animated.View style={[styles.icon, animatedStyles]}>
+                    {
+                        icon && 
+                        <Ionicons 
+                            name={
+                                !value ? icon.preIcon : icon.nextIcon
+                            } 
+                            size={iconSize}  
+                        />
+                    }
+                </Animated.View>
 
                 <Switch 
                     accessible = {true}
                     accessibilityHint='Cambia entre la vista global de las cámaras y la vista individual'
                     value={value}
-                    onValueChange={setValue}
-                    style={styles.switch}
+                    onValueChange={onSwitchChange}
                 />
-
-                {value && <Ionicons name="contract" size={ICONSIZE} style={[styles.nextIcon]} />}
             </ThemedView>
         </ThemedView>
     )
@@ -67,16 +79,7 @@ const styles = StyleSheet.create({
         justifyContent: 'flex-end',
         position: 'relative',
     },
-    switch: {
-        transform: [{scale: 1.2}]    
-    },
-    preIcon: {
-        left: '10.5%',
-        zIndex: 2,
-        position: 'absolute'
-    },
-    nextIcon: {
-        right: '7%',
+    icon: {
         zIndex: 2,
         position: 'absolute'
     }
