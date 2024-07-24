@@ -16,7 +16,7 @@ export const ToolBar = ({value, toggleSwitch}: ToolBarProps) => {
     <ThemedView>
         <IconSwitch 
           value={value} 
-          setValue={toggleSwitch} 
+          toggleSwitch={toggleSwitch} 
           icon={{
             preIcon: 'expand', 
             nextIcon: 'contract'

@@ -1,4 +1,3 @@
-import { useRef, useState } from 'react';
 import { StyleSheet, Switch } from 'react-native';
 
 

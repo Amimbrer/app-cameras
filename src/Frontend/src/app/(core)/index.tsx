@@ -16,7 +16,7 @@ const HomeScreen = () => {
   return (
     
     <ThemedView style={styles.container}>
-      <ToolBar value={fullCameras} setValue={toggleSwitch}/>
+      <ToolBar value={fullCameras} toggleSwitch={toggleSwitch}/>
 
         { 
           fullCameras 
